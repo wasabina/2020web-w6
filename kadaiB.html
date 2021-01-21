@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>課題B</title>
+    <style>
+        body {}
+
+        .lists {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        H1 {
+            position: relative;
+            color: #333;
+            text-shadow: 0 0 2px white;
+        }
+
+        H1:before {
+            content: "";
+            position: absolute;
+            background: #ff2e2e;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            top: 50%;
+            /* border: dashed 1px white; */
+            left: -15px;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+
+        H2 {
+            justify-content: center;
+            padding-left: 10px;
+            color: #0c0c0c;
+            text-shadow: 0 0 5px white;
+            border-left: solid 7px #3a3a3a;
+        }
+
+        #kin {
+            background: -webkit-repeating-linear-gradient(-45deg, #fffecc, #fffecc 3px, #ffe386 3px, #ffe386 7px);
+            background: repeating-linear-gradient(-45deg, #fffecc, #fffecc 3px, #ffe386 3px, #ffe386 7px);
+        }
+
+        #sigoto {
+            background: -webkit-repeating-linear-gradient(-45deg, #b9deff, #b9deff 3px, #e9f4ff 3px, #e9f4ff 7px);
+            background: repeating-linear-gradient(-45deg, #b9deff, #b9deff 3px, #e9f4ff 3px, #e9f4ff 7px);
+        }
+
+        #rennai {
+            background: -webkit-repeating-linear-gradient(-45deg, #ffccf8, #ffccf8 3px, #ffe9ff 3px, #ffe9ff 7px);
+            background: repeating-linear-gradient(-45deg, #ffccf8, #ffccf8 3px, #ffe9ff 3px, #ffe9ff 7px);
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgb(255, 255, 255);
+            cursor: pointer;
+            transition: 0.8s;
+            margin: 0 8px 8px 0;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .eto0 {
+            background-image: url("img/eto_mark01_nezumi.png");
+            background-size: cover;
+        }
+
+        .eto1 {
+            background-image: url("img/eto_mark02_ushi.png");
+            background-size: cover;
+        }
+
+        .eto2 {
+            background-image: url("img/eto_mark03_tora.png");
+            background-size: cover;
+        }
+
+        .eto3 {
+            background-image: url("img/eto_mark04_usagi.png");
+            background-size: cover;
+        }
+
+        .eto4 {
+            background-image: url("img/eto_mark05_tatsu.png");
+            background-size: cover;
+        }
+
+        .eto5 {
+            background-image: url("img/eto_mark06_hebi.png");
+            background-size: cover;
+        }
+
+        .eto6 {
+            background-image: url("img/eto_mark07_uma.png");
+            background-size: cover;
+        }
+
+        .eto7 {
+            background-image: url("img/eto_mark08_hitsuji.png");
+            background-size: cover;
+        }
+
+        .eto8 {
+            background-image: url("img/eto_mark09_saru.png");
+            background-size: cover;
+        }
+
+        .eto9 {
+            background-image: url("img/eto_mark10_tori.png");
+            background-size: cover;
+        }
+
+        .eto10 {
+            background-image: url("img/eto_mark11_inu.png");
+            background-size: cover;
+        }
+
+        .eto11 {
+            background-image: url("img/eto_mark12_inoshishi.png");
+            background-size: cover;
+        }
+
+
+        .daikichi {
+            color: red;
+            background-color: rgba(255, 255, 255, 0.8);
+            background-blend-mode: lighten;
+
+            border-radius: 50%;
+            transform: rotate(2turn) scale(1.1);
+            ;
+
+        }
+
+        .chukichi {
+            color: rgb(255, 136, 0);
+            background-color: rgba(255, 255, 255, 0.8);
+            background-blend-mode: lighten;
+
+            border-radius: 50%;
+            transform: rotate(360deg);
+        }
+
+        .shoukichi {
+            color: rgb(255, 60, 223);
+            background-color: rgba(255, 255, 255, 0.8);
+            background-blend-mode: lighten;
+
+            border-radius: 50%;
+            transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+        }
+
+        .kyou {
+            color: rgb(87, 48, 180);
+            background-color: rgba(255, 255, 255, 0.8);
+            background-blend-mode: lighten;
+
+            transform: scale(0.8);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1>2021年干支運勢占い</h1>
+    </div>
+    <div>
+        <h2 id=kin>金運</h2>
+        <p class=lists id=list1></p>
+        <br>
+    </div>
+
+    <div>
+        <h2 id=sigoto>仕事運</h2>
+        <p class=lists id=list2></p>
+        <br>
+    </div>
+
+    <div>
+        <h2 id=rennai>恋愛運</h2>
+        <p class=lists id=list3></p>
+        <br>
+    </div>
+
+    <script>
+        'use strict';
+
+        const num = 12;
+
+        var etoList1 = document.getElementById('list1');
+        var etoList2 = document.getElementById('list2');
+        var etoList3 = document.getElementById('list3');
+
+        for (let i = 0; i < num; i++) {
+            const li1 = document.createElement('li');
+            li1.classList.add('box');
+            li1.classList.add('eto' + i);
+
+            const li2 = document.createElement('li');
+            li2.classList.add('box');
+            li2.classList.add('eto' + i);
+
+            const li3 = document.createElement('li');
+            li3.classList.add('box');
+            li3.classList.add('eto' + i);
+
+            li1.addEventListener('click', () => {
+                var n = Math.floor(Math.random() * 100); // 0 - 99
+                //console.log(n);
+                if (n < 10) {//10%
+                    li1.textContent = '大吉';
+                    li1.classList.add('daikichi');
+                } else {
+                    if (n < 40) {//30%
+                        li1.textContent = '中吉';
+                        li1.classList.add('chukichi');
+                    } else {
+                        if (n < 90) {//50%
+                            li1.textContent = '小吉';
+                            li1.classList.add('shoukichi');
+                        } else {//10%
+                            li1.textContent = '凶';
+                            li1.classList.add('kyou');
+                        }
+                    }
+                }
+            }, { once: true });
+
+            li2.addEventListener('click', () => {
+                var n = Math.floor(Math.random() * 100); // 0 - 99
+                if (n < 10) {
+                    li2.textContent = '大吉';
+                    li2.classList.add('daikichi');
+                } else {
+                    if (n < 40) {
+                        li2.textContent = '中吉';
+                        li2.classList.add('chukichi');
+                    } else {
+                        if (n < 90) {
+                            li2.textContent = '小吉';
+                            li2.classList.add('shoukichi');
+                        } else {
+                            li2.textContent = '凶';
+                            li2.classList.add('kyou');
+                        }
+                    }
+                }
+            }, { once: true });
+
+            li3.addEventListener('click', () => {
+                var n = Math.floor(Math.random() * 100); // 0 - 99
+                if (n < 10) {
+                    li3.textContent = '大吉';
+                    li3.classList.add('daikichi');
+                } else {
+                    if (n < 40) {
+                        li3.textContent = '中吉';
+                        li3.classList.add('chukichi');
+                    } else {
+                        if (n < 90) {
+                            li3.textContent = '小吉';
+                            li3.classList.add('shoukichi');
+                        } else {
+                            li3.textContent = '凶';
+                            li3.classList.add('kyou');
+                        }
+                    }
+                }
+            }, { once: true });
+
+            etoList1.appendChild(li1);
+            etoList2.appendChild(li2);
+            etoList3.appendChild(li3);
+        }
+    </script>
+</body>
+
+</html>
